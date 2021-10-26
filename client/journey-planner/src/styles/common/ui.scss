@@ -1,0 +1,15 @@
+button {
+  border: none;
+  padding: 8px 12px;
+  background-color: $buttons;
+  color: $white;
+  border-radius: 4px;
+  font-family: $body;
+}
+
+input {
+  border: none;
+  font-family: $body;
+  border-radius: 4px;
+  background-color: $bg;
+}

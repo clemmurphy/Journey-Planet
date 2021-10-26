@@ -1,0 +1,55 @@
+$search-height: 50px;
+
+#searchContainer {
+  position: relative;
+  top: -5px;
+  padding: $container-pad;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  .search-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $container-pad;
+    h3 {
+      font-size: 16px;
+      margin: 0 5px;
+    }
+  }
+  .search {
+    background-color: $bg;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    height: $search-height;
+    display: flex;
+    input {
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+    }
+  }
+}
+
+#CurrentLocationWrapper {
+  .location-dot {
+    width: $search-height;
+    height: $search-height;
+    background-color: $bg-dark;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $buttons;
+  }
+  .location-dot-active {
+    width: $search-height;
+    height: $search-height;
+    background-color: $buttons;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $bg;
+  }
+}

@@ -1,0 +1,55 @@
+.journey-options-list {
+  margin: $container-pad 0;
+  .journey-option {
+    display: flex;
+    flex-direction: column;
+    margin: $container-pad 0;
+    padding: $container-pad;
+    cursor: pointer;
+    background-color: $white;
+    border-radius: 8px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: 0.3s ease;
+    &:hover {
+      transition: 0.3s ease;
+      transform: translate(0, -3px);
+    }
+    * {
+      pointer-events:none;
+    }
+    .steps-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      .mode-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 12px;
+        i {
+          margin: 10px 0;
+          font-size: 22px;
+        }
+        &:last-child>i {
+          display: none;
+        }
+        .leg-names {
+          text-align: center;
+        }
+        .journey-duration {
+          height: 100px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin: 10px 10px;
+          justify-content: center;
+          .bus-route-options  {
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+}
