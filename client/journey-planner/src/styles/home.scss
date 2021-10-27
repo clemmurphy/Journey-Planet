@@ -1,3 +1,23 @@
 #homeWrapper {
+  display: flex;
+  flex-wrap: wrap;
   padding: $container-pad;
+  background-color: $bg-dark;
+  height: 100%;
+  div {
+    margin-top: $container-pad;
+  }
+  .image-container {
+    img {
+      width: 100%;
+    }
+  }
+  .text-container {
+    p {
+      margin-top: 10px;
+    }
+    button {
+      margin-top: $container-pad;
+    }
+  }
 }

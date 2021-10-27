@@ -2,11 +2,8 @@ $search-height: 50px;
 
 #searchContainer {
   position: relative;
-  top: -5px;
   padding: $container-pad;
   background-color: $white;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   .search-display {
     display: flex;
     align-items: center;
@@ -14,7 +11,13 @@ $search-height: 50px;
     margin-bottom: $container-pad;
     h3 {
       font-size: 16px;
-      margin: 0 5px;
+      margin: 0 4px;
+    }
+    #to-text {
+      text-transform: uppercase;
+      color: $buttons;
+      font-size: 12px;
+      font-weight: 800;
     }
   }
   .search {
@@ -27,6 +30,22 @@ $search-height: 50px;
       width: 100%;
       height: 100%;
       padding: 10px;
+    }
+  }
+}
+
+.search-results {
+  &>* {
+    padding: $container-pad;
+    &:hover {
+      background-color: $white;
+      cursor: pointer;
+    }
+  }
+  h2 {
+    &:hover {
+      background-color: $bg;
+      cursor: initial;
     }
   }
 }

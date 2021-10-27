@@ -7,7 +7,7 @@ const MapRender = ({ journey }) => {
   const mapContainer = useRef(null)
   mapboxgl.accessToken = 'pk.eyJ1IjoiY2xlbW11cnBoeSIsImEiOiJja3V6ZXA4NDMycTVxMnVsbnY4M24ydXczIn0.kwbfg0stv5iXHMcTE4hnzw'
 
-  let data = [51.5072, 0.1276]
+  let data = [51.508530, -0.076132]
 
   const lineColours = {
     'walking': '#FF8D2E',
@@ -33,8 +33,8 @@ const MapRender = ({ journey }) => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: new mapboxgl.LngLat(0.1276, 51.5072),
-      zoom: 9,
+      center: new mapboxgl.LngLat(-0.076132, 51.508530),
+      zoom: 8.3,
     })
 
     // On map load, add all the data to the map
@@ -83,15 +83,6 @@ const MapRender = ({ journey }) => {
           }
         }
         
-        map.fitBounds(bounds, {
-          padding: 20,
-        })
-      } else {
-        // If no selected journey, zoom out to whole of London
-        const bounds = new mapboxgl.LngLatBounds(
-          [-0.489, 51.28],
-          [0.236,51.686]
-        )
         map.fitBounds(bounds, {
           padding: 20,
         })

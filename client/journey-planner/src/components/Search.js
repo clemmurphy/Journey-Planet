@@ -93,8 +93,12 @@ const Search = ({ origin, setOrigin, destination, setDestination, setJourneyOpti
     <>
       <div id='searchContainer'>
         <div className="search-display">
-          <h3>{origin.text ? origin.text : '-'}</h3>
-          <h3>to</h3>
+          { currentLocation.length > 0 ?
+            <h3>Your Location</h3>
+            :
+            <h3>{origin.text ? origin.text : '-'}</h3>
+          }
+          <h3 id='to-text'>TO</h3>
           <h3>{destination.text ? destination.text : '-'}</h3>
         </div>
         <div className="search origin-search">
@@ -110,7 +114,7 @@ const Search = ({ origin, setOrigin, destination, setDestination, setJourneyOpti
         </div>
       </div>
       <div className="search-results">
-        {searchResults.length > 0 && <h3>Select Your {lastSearched}</h3> }
+        {searchResults.length > 0 && <h2>Select Your {lastSearched}</h2> }
         {searchResults.length > 0 ? 
           searchResults.map(result => {
             return (

@@ -11,10 +11,11 @@
 @import './map.scss';
 @import './search.scss';
 @import './journey-selector.scss';
+@import './login-register.scss';
+@import './footer.scss';
 
 // Responsive component styles
 @import './common/responsive/desktop.scss';
-@import './common/responsive/tablet.scss';
 
 * {
   margin: 0;

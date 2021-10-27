@@ -19,7 +19,7 @@ class AllUsersView(APIView):
     def get(self, _request):
         users = User.objects.all()
         serialized_users = UserSerializer(users, many=True)
-        return Response({ 'message': '👋 Registration successful!' }, status=status.HTTP_200_OK)
+        return Response(serialized_users.data, status=status.HTTP_200_OK)
 
 # SINGLE USER
 class SingleUserView(APIView):
@@ -61,17 +61,18 @@ class RegisterView(APIView):
         if user_to_create.is_valid():
             user_to_create.save()
             return Response(user_to_create.data, status=status.HTTP_201_CREATED)
+        print(user_to_create.errors)
         return Response(user_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 # LOGIN
 class LoginView(APIView):
     def post(self, request):
-        email = request.data.get('email')
+        username = request.data.get('username')
         password = request.data.get('password')
 
         # Find user from db by email, raise error if not found
         try:
-            user_to_login = User.objects.get(email=email)
+            user_to_login = User.objects.get(username=username)
         except User.DoesNotExist:
             raise PermissionDenied(detail="🤷‍♂️ User not found!")
 
