@@ -1,12 +1,28 @@
+.journey-selector {
+  background-color: $bg;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.selected {
+  border: 2px $buttons solid;
+  transition: 0.3s ease;
+}
+
+.hidden {
+  display: none;
+  transition: 0.3s ease;
+}
+
 .journey-options-list {
-  margin: $container-pad 0;
   .journey-option {
+    background-color: $white;
     display: flex;
     flex-direction: column;
-    margin: $container-pad 0;
-    padding: $container-pad;
+    margin: $container-pad;
     cursor: pointer;
-    background-color: $white;
     border-radius: 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: 0.3s ease;
@@ -17,16 +33,30 @@
     * {
       pointer-events:none;
     }
+    .journey-details {
+      display:flex;
+      justify-content: space-evenly;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding: $container-pad;
+      * {
+        flex-grow: 1;
+        text-align: center;
+      }
+    }
     .steps-wrapper {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
+      padding: $container-pad;
+      padding-top: 0;
       .mode-wrapper {
         display: flex;
         flex-direction: row;
         align-items: center;
-        font-size: 12px;
+        font-size: 11px;
+        max-width: 120px;
         i {
           margin: 10px 0;
           font-size: 22px;

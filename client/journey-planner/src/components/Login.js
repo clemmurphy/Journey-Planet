@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
-const Login = () => {
+const Login = ({ setLoggedIn, setUserHome }) => {
 
   // Initialize history object
   const history = useHistory()
@@ -30,9 +30,11 @@ const Login = () => {
       const { data } = await axios.post('api/users/login/', formData)
       console.log(data.message)
       localStorage.setItem('token', data.token)
+      setLoggedIn(true)
       history.push('/search')
     } catch (err) {
-      console.log(err)
+      const errorMessage = err.request.responseText
+      console.log(errorMessage)
     }
   }
 
@@ -40,8 +42,8 @@ const Login = () => {
     <div id="loginWrapper">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="username" id="username" autoComplete="none" placeholder="Username" onInput={handleInput} />
-        <input type="password" name="password" id="password" placeholder="Password" onInput={handleInput} />
+        <input type="text" name="username" id="username" autoComplete="username" placeholder="Username" onInput={handleInput} />
+        <input type="password" name="password" id="password" placeholder="Password" autoComplete="current-password" onInput={handleInput} />
         <button type="submit">Login</button>
       </form>
     </div>

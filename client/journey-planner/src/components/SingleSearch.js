@@ -11,6 +11,7 @@ const Search = ({ formData, setFormData }) => {
   // On page load clear search terms
   useEffect(() => {
     setSearchResults([])
+    setSearchTerm('')
   }, [])
 
   // Search for place by entering a name
@@ -22,7 +23,32 @@ const Search = ({ formData, setFormData }) => {
         setSearchResults(data.features)
       }
     }
+    // Search by postcode and add to search results
+    const postcodeSearch = async () => {
+      const { data } = await axios.get(`http://api.postcodes.io/postcodes/${searchTerm}`)
+      const pcText = data.result.postcode
+      const pcCenter = [data.result.longitude, data.result.latitude]
+      const pcAddress = data.result.parliamentary_constituency
+      // Normalise results to search result object format
+      const postcodeResult = {
+        center: pcCenter,
+        text: pcText,
+        properties: {
+          address: pcAddress,
+        },
+        context: [
+          {
+            text: pcText,
+          }
+        ],
+      }
+      // Spread into search results
+      setSearchResults([...searchResults, postcodeResult])
+    }
     handleSearch()
+    if (searchTerm.length > 5) {
+      postcodeSearch()
+    }
   }, [searchTerm, setSearchResults])
 
   // Handle search inputs
@@ -34,12 +60,10 @@ const Search = ({ formData, setFormData }) => {
 
   // Select the origin or destination from search results list
   const setLocations = (e) => {
-    const key = e.target.parentNode.dataset.key
-    const placeToSet = searchResults.filter(res => {
-      return res.id === key
-    })
+    const key = e.target.dataset.key
+    const placeToSet = searchResults[key]
 
-    const place = placeToSet[0]
+    const place = placeToSet
 
     setFormData({
       ...formData,
@@ -62,9 +86,9 @@ const Search = ({ formData, setFormData }) => {
         {formData.home && <h3>Home selected: {formData.homeName}</h3>}
         {searchResults.length > 0 && <h3>Select Your Location</h3> }
         {searchResults.length > 0 ? 
-          searchResults.map(result => {
+          searchResults.map((result, index) => {
             return (
-              <div className="search-result" key={result.id} onClick={setLocations} data-key={result.id}>
+              <div className="search-result" key={index} onClick={setLocations} data-key={index}>
                 <h3>{result.text}</h3>
                 <p>{result.properties.address}</p>
                 <p>{result.context[0].text}</p>

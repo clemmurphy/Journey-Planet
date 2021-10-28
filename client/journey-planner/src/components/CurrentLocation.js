@@ -7,6 +7,7 @@ const CurrentLocation = ({ currentLocation, setCurrentLocation, setSearchTerm, s
       navigator.geolocation.getCurrentPosition(position => {
         const originData = {
           center: [position.coords.longitude, position.coords.latitude],
+          text: 'Your Location',
         }
         setCurrentLocation(originData.center)
         setOrigin(originData)

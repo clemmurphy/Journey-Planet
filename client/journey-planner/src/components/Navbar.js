@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({ loggedIn, setLoggedIn, setUserHome }) => {
 
   const history = useHistory()
 
   const logoutUser = () => {
     localStorage.removeItem('token')
+    setLoggedIn(false)
+    setUserHome(null)
     history.push('/')
   }
 
@@ -16,7 +18,7 @@ const Navbar = () => {
       <div className="navbar-brand"><h2><Link to='/'><i className="fas fa-globe-europe"></i><span className="navbar-text"> Journey Planet</span></Link></h2></div>
       <div className="navbar-nav">
         <ul>
-          { localStorage.getItem('token') ? 
+          { loggedIn ? 
             <li><a onClick={logoutUser}><i className="fas fa-sign-out-alt"></i><span className="navbar-text"> Logout</span></a></li>
             :
             <>

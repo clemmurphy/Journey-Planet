@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import mapboxgl from 'mapbox-gl'
 import parseWaypoints from '../helpers/parseWaypoints'
+import axios from 'axios'
+import jwt from 'jsonwebtoken'
 
 const MapRender = ({ journey }) => {
 
@@ -15,18 +17,17 @@ const MapRender = ({ journey }) => {
     'bus': '#F478AA',
     'national-rail': '#4677EC',
     'tflrail': '#1BAE81',
+    'dlr': '#F478AA',
   }
 
   useEffect(() => {
 
     // If there is a selected journey, process the waypoints
     if (journey.legs) {
-      console.log('Selected journey:', journey)
       data = []
       journey.legs.forEach((leg) => {
         data.push(parseWaypoints(leg))
       })
-      console.log('Waypoint data:', data)
     }
 
     // Add and configure map 
@@ -86,6 +87,54 @@ const MapRender = ({ journey }) => {
         map.fitBounds(bounds, {
           padding: 20,
         })
+      }
+
+      // If the user is logged in, get their home location
+      if (localStorage.token) {
+        let homeCoords = []
+        const getHomeLocation = async () => {
+          const decodedJwt = jwt.decode(localStorage.token)
+          const userId = decodedJwt.sub
+          try {
+            const { data } = await axios.get(`api/users/${userId}`)
+            homeCoords = data.home
+            const homeMarker = {
+              'type': 'FeatureCollection',
+              'features': [
+                {
+                  'type': 'Feature',
+                  'geometry': {
+                    'type': 'Point',
+                    'coordinates': homeCoords,
+                  },
+                  'properties': {
+                    'title': 'Home',
+                    'description': 'Your saved home',
+                  },
+                }
+              ],
+            }
+    
+            for (const feature of homeMarker.features) {
+              // create a HTML element for each feature
+              const home = document.createElement('div')
+              home.className = 'homeMarker'
+              // make a marker for each feature and add it to the map
+              new mapboxgl.Marker(home)
+                .setLngLat(feature.geometry.coordinates)
+                .setPopup(
+                  new mapboxgl.Popup({ offset: 25 }) // add popups
+                    .setHTML(
+                      `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+                    )
+                )
+                .addTo(map)
+            }
+          } catch (err) {
+            console.log(err)
+          }
+        }
+        getHomeLocation()
       }
     })
 

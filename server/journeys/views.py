@@ -62,3 +62,18 @@ class SingleJourneyView(APIView):
             return Response(journey.errors, status=status.HTTP_401_UNAUTHORIZED)
         journey.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class JourneyByOwnerView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    # GET journey by user id
+    def get(self, request):
+        journeys_to_get = []
+        all_journeys = Journey.objects.all()
+        serialized_journeys = PopulatedJourneySerializer(all_journeys, many=True)
+        if not request.user.id:
+            print('No user ID')
+        for journey in serialized_journeys.data:
+            if journey['owner']['id'] == request.user.id:
+                journeys_to_get.append(journey)
+        return Response(journeys_to_get, status=status.HTTP_200_OK)

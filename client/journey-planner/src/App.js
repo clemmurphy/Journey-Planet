@@ -13,13 +13,15 @@ function App() {
 
   const [ journey, setJourney ] = useState({})
   const [ journeyOptions, setJourneyOptions ] = useState([])
-  const [ origin, setOrigin ] = useState({})
-  const [ destination, setDestination ] = useState({})
+  const [ origin, setOrigin ] = useState(null)
+  const [ destination, setDestination ] = useState(null)
+  const [ recentSearches, setRecentSearches ] = useState([])
+  const [ loggedIn, setLoggedIn ] = useState(false)
 
   return (
     <div className='site-wrapper'>
       <BrowserRouter>
-        <Navbar />
+        <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -28,15 +30,15 @@ function App() {
             <div className="search-wrapper">
               <div className="journey-search">
                 <MapRender journey={journey} origin={origin} destination={destination} />
-                <Search setJourneyOptions={setJourneyOptions} origin={origin} setOrigin={setOrigin} destination={destination} setDestination={setDestination} />
+                <Search setJourneyOptions={setJourneyOptions} origin={origin} destination={destination} setDestination={setDestination} setOrigin={setOrigin} recentSearches={recentSearches} setRecentSearches={setRecentSearches} />
               </div>
               <div className='journey-selector'>
-                <JourneySelector setJourney={setJourney} journey={journey} journeyOptions={journeyOptions} />
+                <JourneySelector setJourney={setJourney} setJourneyOptions={setJourneyOptions} journey={journey} journeyOptions={journeyOptions} origin={origin} destination={destination} setDestination={setDestination} setOrigin={setOrigin} recentSearches={recentSearches} setRecentSearches={setRecentSearches} />
               </div>
             </div>
           </Route>
           <Route path='/login'>
-            <Login />
+            <Login setLoggedIn={setLoggedIn} />
           </Route>
           <Route path='/register'>
             <Register />

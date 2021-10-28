@@ -1,21 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import RecentSearches from './RecentSearches'
 
-const JourneySelector = ({ journeyOptions, setJourney }) => {
+const JourneySelector = ({ setJourneyOptions, journeyOptions, setJourney, origin, destination, setDestination, setOrigin, recentSearches, setRecentSearches }) => {
 
   const selectJourney = (e) => {
     const journeyId = e.target.dataset.journeyid
+    const allJourneys = (e.target.parentNode.children)
+    for (let i = 0; i < allJourneys.length; i++) {
+      allJourneys[i].classList.remove('selected')
+    }
+    e.target.classList.add('selected')
     setJourney(journeyOptions[journeyId])
   }
 
+  useEffect(() => {
+    setJourneyOptions([])
+  }, [setJourneyOptions])
+
   return (
-    <>
+    <>{ ((origin && destination) && (journeyOptions.length === 0)) ? <div className="loader-container"><div className="loader"></div></div> : <></> }
+      <RecentSearches setDestination={setDestination} setOrigin={setOrigin} recentSearches={recentSearches} setRecentSearches={setRecentSearches} />
       { journeyOptions.length > 0 ?
         <div className="journey-options-list">
           { journeyOptions.map((j, i) => {
             return (
               <div className="journey-option" key={i} data-journeyid={i} onClick={selectJourney}>
-                <h3><i className="fas fa-stopwatch"></i> {j.duration}mins</h3>
-                <h3><i className="fas fa-map-marked-alt"></i> {j.legs.length} legs</h3>
+                <div className="journey-details-container">
+                  <div className="journey-details">
+                    <h3><i className="fas fa-stopwatch"></i> {j.duration}mins</h3>
+                    <h3><i className="fas fa-map-marked-alt"></i> {j.legs.length} legs</h3>
+                  </div>
+                </div>
                 <div className='steps-wrapper'>
                   { j.legs.map((l, i) => {
                     if (l.mode.id === 'walking') {

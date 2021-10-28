@@ -17,8 +17,8 @@ const Home = () => {
       </div>
       <div className="text-container">
         <h1><i className="fas fa-globe-europe"></i> Journey Planet</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, libero. Architecto consequatur quam dicta, dolor sunt quisquam quas, quod hic, exercitationem quae recusandae.</p>
-        <p>Dolore delectus, totam nesciunt nemo culpa sit nulla ullam.</p>
+        <p>Sometimes traversing London can seem like a mission to Mars. Make your life simpler, quicker and hassle-free by planning your journeys ahead of time using real-time data and up-to-the-minute travel advice.</p>
+        <p>Before you make your journey, planet.</p>
         <button onClick={redirect}>Plan Your Journey <i className="fas fa-chevron-right"></i></button>
       </div>
     </div>

@@ -42,6 +42,9 @@ $search-height: 50px;
       cursor: pointer;
     }
   }
+  .search-result>* {
+    pointer-events: none;
+  }
   h2 {
     &:hover {
       background-color: $bg;
@@ -50,25 +53,39 @@ $search-height: 50px;
   }
 }
 
-#CurrentLocationWrapper {
+#CurrentLocationWrapper, #HomeLocationWrapper {
+  cursor: pointer;
   .location-dot {
     width: $search-height;
     height: $search-height;
     background-color: $bg-dark;
-    border-radius: 0 10px 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $buttons;
+    transition: 0.3s;
+    &:hover {
+      background-color: $bg-darker;
+      transition: 0.3s;
+    }
   }
   .location-dot-active {
     width: $search-height;
     height: $search-height;
     background-color: $buttons;
-    border-radius: 0 10px 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $bg;
+    transition: 0.3s;
+  }
+}
+
+#CurrentLocationWrapper {
+  .location-dot {
+    border-radius: 0 10px 10px 0;
+  }
+  .location-dot-active {
+    border-radius: 0 10px 10px 0;
   }
 }

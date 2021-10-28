@@ -9,9 +9,6 @@
         min-width: 50%;
         background-color: $bg;
       }
-      .journey-selector {
-        padding: 0 $container-pad;
-      }
     }
   }
   #mainNavbar {
@@ -41,5 +38,35 @@
       margin-top: $container-pad;
       max-width: 400px;
     }
+  }
+
+  .journey-search {
+    padding: $container-pad;
+  }
+
+  .mapboxgl-map {
+    height: 500px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  #registerWrapper, #loginWrapper {
+    h2 {
+      padding: $container-pad;
+    }
+    form {
+      input {
+        width: 40%;
+      }
+      button {
+        width: 40%;
+      }
+      #searchContainer {
+        width: 40%;
+      }
+    }
+  }
+
+  #footerWrapper {
+    border-radius: 0 0 10px 10px;
   }
 }
