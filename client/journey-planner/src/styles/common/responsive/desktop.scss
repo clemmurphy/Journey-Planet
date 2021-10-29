@@ -37,6 +37,9 @@
     div {
       margin-top: $container-pad;
       max-width: 400px;
+      p {
+        font-size: 18px;
+      }
     }
   }
 
@@ -67,6 +70,7 @@
   }
 
   #footerWrapper {
+    display: flex;
     border-radius: 0 0 10px 10px;
   }
 }

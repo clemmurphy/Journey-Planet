@@ -18,12 +18,13 @@ const RecentSearches = ({ setOrigin, setDestination, recentSearches, setRecentSe
         console.log(err.request.responseText)
       }
     }
-    getRecentSearches()
-  }, [])
+    if (localStorage.token) {
+      getRecentSearches()
+    }
+  }, [setRecentSearches])
 
   const handleSelect = (e) => {
     const selectedOption = e.target.options[e.target.selectedIndex]
-    console.log(recentSearches[selectedOption.dataset.index].origin)
     setOrigin({
       origin_string: recentSearches[selectedOption.dataset.index].origin_string,
       destination_string: recentSearches[selectedOption.dataset.index].destination_string,

@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
-const Navbar = ({ loggedIn, setLoggedIn, setUserHome }) => {
+const Navbar = ({ loggedIn, setLoggedIn }) => {
 
   const history = useHistory()
+
+  useEffect(() => {
+    if (localStorage.token) {
+      setLoggedIn(true)
+    }
+  }, [setLoggedIn])
 
   const logoutUser = () => {
     localStorage.removeItem('token')
     setLoggedIn(false)
-    setUserHome(null)
     history.push('/')
   }
 

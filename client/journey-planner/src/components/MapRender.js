@@ -3,6 +3,8 @@ import mapboxgl from 'mapbox-gl'
 import parseWaypoints from '../helpers/parseWaypoints'
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const MapRender = ({ journey }) => {
 
