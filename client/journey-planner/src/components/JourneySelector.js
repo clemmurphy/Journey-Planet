@@ -18,7 +18,7 @@ const JourneySelector = ({ setJourneyOptions, journeyOptions, setJourney, origin
   }, [setJourneyOptions])
 
   return (
-    <>{ journeyOptions.length === 0 && <div className="journey-placeholder"><h3><i className="fas fa-map-marked-alt"></i></h3></div> }
+    <>{ (journeyOptions.length === 0 && !localStorage.token) && <div className="journey-placeholder"><h3><i className="fas fa-map-marked-alt"></i></h3></div> }
       { ((origin && destination) && (journeyOptions.length === 0)) ? <div className="loader-container"><div className="loader"></div></div> : <></> }
       <RecentSearches setDestination={setDestination} setOrigin={setOrigin} recentSearches={recentSearches} setRecentSearches={setRecentSearches} />
       { journeyOptions.length > 0 ?

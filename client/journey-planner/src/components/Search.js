@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import CurrentLocation from './CurrentLocation'
 import HomeLocation from './HomeLocation'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const Search = ({ origin, setOrigin, destination, setDestination, setJourneyOptions, recentSearches, setRecentSearches }) => {
 
@@ -32,7 +34,7 @@ const Search = ({ origin, setOrigin, destination, setDestination, setJourneyOpti
     const handleSearch = async () => {
       if (searchTerm !== '') {
         const { data } = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/
-          ${searchTerm}.json?bbox=-0.489,51.28,0.236,51.686&types=poi,address,place&access_token=pk.eyJ1IjoiY2xlbW11cnBoeSIsImEiOiJja3V6ZXA4NDMycTVxMnVsbnY4M24ydXczIn0.kwbfg0stv5iXHMcTE4hnzw`)
+          ${searchTerm}.json?bbox=-0.489,51.28,0.236,51.686&types=poi,address,place&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`)
         setSearchResults(data.features)
       }
     }

@@ -9,7 +9,8 @@ dotenv.config()
 const MapRender = ({ journey }) => {
 
   const mapContainer = useRef(null)
-  mapboxgl.accessToken = 'pk.eyJ1IjoiY2xlbW11cnBoeSIsImEiOiJja3V6ZXA4NDMycTVxMnVsbnY4M24ydXczIn0.kwbfg0stv5iXHMcTE4hnzw'
+  mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
+  console.log(process.env.REACT_APP_MAPBOX_ACCESS_TOKEN)
 
   let data = [51.508530, -0.076132]
 
