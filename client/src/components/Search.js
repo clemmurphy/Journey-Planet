@@ -46,24 +46,26 @@ const Search = ({ origin, setOrigin, destination, setDestination, setJourneyOpti
             console.clear()
           }
         })
-      const pcText = data.result.postcode
-      const pcCenter = [data.result.longitude, data.result.latitude]
-      const pcAddress = data.result.parliamentary_constituency
-      // Normalise results to search result object format
-      const postcodeResult = {
-        center: pcCenter,
-        text: pcText,
-        properties: {
-          address: pcAddress,
-        },
-        context: [
-          {
-            text: pcText,
-          }
-        ],
-      }
-      // Spread into search results
-      setSearchResults([...searchResults, postcodeResult])
+      if (data) {
+        const pcText = data.result.postcode
+        const pcCenter = [data.result.longitude, data.result.latitude]
+        const pcAddress = data.result.parliamentary_constituency
+        // Normalise results to search result object format
+        const postcodeResult = {
+          center: pcCenter,
+          text: pcText,
+          properties: {
+            address: pcAddress,
+          },
+          context: [
+            {
+              text: pcText,
+            }
+          ],
+        }
+        // Spread into search results
+        setSearchResults([...searchResults, postcodeResult])
+      } 
     }
     handleSearch()
     if (searchTerm.length > 5) {
