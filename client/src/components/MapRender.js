@@ -11,8 +11,10 @@ const MapRender = ({ journey }) => {
   const mapContainer = useRef(null)
   mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
+  // Set default location to the center of London
   let data = [51.508530, -0.076132]
 
+  // Colours for each mode of transport to display on the map
   const lineColours = {
     'walking': '#FF8D2E',
     'tube': '#00554E',
@@ -20,6 +22,7 @@ const MapRender = ({ journey }) => {
     'national-rail': '#4677EC',
     'tflrail': '#1BAE81',
     'dlr': '#F478AA',
+    'tram': '#000000',
   }
 
   useEffect(() => {

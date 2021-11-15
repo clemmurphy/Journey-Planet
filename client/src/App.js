@@ -13,17 +13,23 @@ import Register from './components/Register'
 
 function App() {
 
+  // Global state for current journey and recent searches
   const [ journey, setJourney ] = useState({})
   const [ journeyOptions, setJourneyOptions ] = useState([])
   const [ origin, setOrigin ] = useState(null)
   const [ destination, setDestination ] = useState(null)
   const [ recentSearches, setRecentSearches ] = useState([])
+
+  // Global state for user login status
   const [ loggedIn, setLoggedIn ] = useState(false)
 
   return (
     <div className='site-wrapper'>
       <BrowserRouter>
-        <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        <Navbar
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
+        />
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -31,16 +37,41 @@ function App() {
           <Route path='/search'>
             <div className="search-wrapper">
               <div className="journey-search">
-                <MapRender journey={journey} origin={origin} destination={destination} />
-                <Search setJourneyOptions={setJourneyOptions} origin={origin} destination={destination} setDestination={setDestination} setOrigin={setOrigin} recentSearches={recentSearches} setRecentSearches={setRecentSearches} />
+                <MapRender
+                  journey={journey}
+                  origin={origin}
+                  destination={destination}
+                />
+                <Search
+                  setJourneyOptions={setJourneyOptions}
+                  origin={origin}
+                  destination={destination}
+                  setDestination={setDestination}
+                  setOrigin={setOrigin}
+                  recentSearches={recentSearches}
+                  setRecentSearches={setRecentSearches}
+                />
               </div>
               <div className='journey-selector'>
-                <JourneySelector setJourney={setJourney} setJourneyOptions={setJourneyOptions} journey={journey} journeyOptions={journeyOptions} origin={origin} destination={destination} setDestination={setDestination} setOrigin={setOrigin} recentSearches={recentSearches} setRecentSearches={setRecentSearches} />
+                <JourneySelector
+                  setJourney={setJourney}
+                  setJourneyOptions={setJourneyOptions}
+                  journey={journey}
+                  journeyOptions={journeyOptions}
+                  origin={origin}
+                  destination={destination}
+                  setDestination={setDestination}
+                  setOrigin={setOrigin}
+                  recentSearches={recentSearches}
+                  setRecentSearches={setRecentSearches}
+                />
               </div>
             </div>
           </Route>
           <Route path='/login'>
-            <Login setLoggedIn={setLoggedIn} />
+            <Login
+              setLoggedIn={setLoggedIn}
+            />
           </Route>
           <Route path='/register'>
             <Register />
