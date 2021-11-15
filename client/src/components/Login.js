@@ -28,13 +28,11 @@ const Login = ({ setLoggedIn, setUserHome }) => {
     e.preventDefault()
     try {
       const { data } = await axios.post('api/users/login/', formData)
-      console.log(data.message)
       localStorage.setItem('token', data.token)
       setLoggedIn(true)
       history.push('/search')
     } catch (err) {
       const errorMessage = err.request.responseText
-      console.log(errorMessage)
     }
   }
 

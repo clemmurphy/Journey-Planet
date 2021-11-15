@@ -30,14 +30,12 @@ const Register = () => {
     if (formData.homeName) {
       delete formData.homeName
     }
-    console.log('Form data to submit:', formData)
     try {
       await axios.post('api/users/register/', formData)
       console.log('👋 Registration successful')
       history.push('/login')
     } catch (err) {
       const errorMessage = err.request.responseText
-      console.log(errorMessage)
     }
   }
 
