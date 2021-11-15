@@ -46,7 +46,7 @@ const Search = ({ origin, setOrigin, destination, setDestination, setJourneyOpti
             console.clear()
           }
         })
-      if (data) {
+      if (data.response.status !== 404) {
         const pcText = data.result.postcode
         const pcCenter = [data.result.longitude, data.result.latitude]
         const pcAddress = data.result.parliamentary_constituency
