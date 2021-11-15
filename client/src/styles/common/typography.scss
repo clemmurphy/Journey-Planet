@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;700;900&family=Rubik:wght@300;400;600;700&display=swap');
+
+// Body
+$montserrat: 'Montserrat', sans-serif;
+$body: $montserrat;
+
+// Title
+$rubik: 'Rubik', sans-serif;
+$title: $rubik;
+
+h1, h2, h3 {
+  font-family: $montserrat;
+}
+
+p, span, li {
+  font-family: $rubik;
+}

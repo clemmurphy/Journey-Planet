@@ -1,0 +1,76 @@
+@media screen and (min-width: 900px) {
+  .site-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    .search-wrapper {
+      display: flex;
+      background-color: $white;
+      .journey-search {
+        min-width: 50%;
+        background-color: $bg;
+      }
+    }
+  }
+  #mainNavbar {
+    margin-top: $container-pad;
+    border-radius: 8px 8px 0 0;
+    .navbar-text {
+      display: initial;
+    }
+  }
+
+  form {
+    input {
+      width: 60%;
+    }
+    button {
+      width: 60%;
+    }
+    #searchContainer {
+      width: 60%;
+    }
+  }
+
+  #homeWrapper {
+    min-height: 600px;
+    justify-content: space-around;
+    div {
+      margin-top: $container-pad;
+      max-width: 400px;
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .journey-search {
+    padding: $container-pad;
+  }
+
+  .mapboxgl-map {
+    height: 500px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  #registerWrapper, #loginWrapper {
+    h2 {
+      padding: $container-pad;
+    }
+    form {
+      input {
+        width: 40%;
+      }
+      button {
+        width: 40%;
+      }
+      #searchContainer {
+        width: 40%;
+      }
+    }
+  }
+
+  #footerWrapper {
+    display: flex;
+    border-radius: 0 0 10px 10px;
+  }
+}

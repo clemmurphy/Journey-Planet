@@ -1,0 +1,25 @@
+// Project variables
+@import './common/colors.scss';
+@import './common/typography.scss';
+@import './common/containers.scss';
+@import './common/ui.scss';
+@import './common/layout.scss';
+
+// Default component styles
+@import './navbar.scss';
+@import './home.scss';
+@import './map.scss';
+@import './search.scss';
+@import './journey-selector.scss';
+@import './login-register.scss';
+@import './footer.scss';
+@import './recent-searches.scss';
+
+// Responsive component styles
+@import './common/responsive/desktop.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
