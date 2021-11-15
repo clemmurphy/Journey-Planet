@@ -40,32 +40,36 @@ const Search = ({ origin, setOrigin, destination, setDestination, setJourneyOpti
     }
     // Search by postcode and add to search results
     const postcodeSearch = async () => {
-      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${searchTerm}`)
+      await axios.get(`https://api.postcodes.io/postcodes/${searchTerm}`)
+        .then((data) => {
+
+          // Save relevant data to variables
+          const pcText = data.result.postcode
+          const pcCenter = [data.result.longitude, data.result.latitude]
+          const pcAddress = data.result.parliamentary_constituency
+          
+          // Normalise results to search result object format
+          const postcodeResult = {
+            center: pcCenter,
+            text: pcText,
+            properties: {
+              address: pcAddress,
+            },
+            context: [
+              {
+                text: pcText,
+              }
+            ],
+          }
+
+          // Spread into search results
+          setSearchResults([...searchResults, postcodeResult])
+        })
         .catch((error) => {
           if (error.response && error.response.status === 404) {
             console.clear()
           }
         })
-      if (data.response.status !== 404) {
-        const pcText = data.result.postcode
-        const pcCenter = [data.result.longitude, data.result.latitude]
-        const pcAddress = data.result.parliamentary_constituency
-        // Normalise results to search result object format
-        const postcodeResult = {
-          center: pcCenter,
-          text: pcText,
-          properties: {
-            address: pcAddress,
-          },
-          context: [
-            {
-              text: pcText,
-            }
-          ],
-        }
-        // Spread into search results
-        setSearchResults([...searchResults, postcodeResult])
-      } 
     }
     handleSearch()
     if (searchTerm.length > 5) {
