@@ -42,7 +42,7 @@ const Search = ({ origin, setOrigin, destination, setDestination, setJourneyOpti
     const postcodeSearch = async () => {
       const { data } = await axios.get(`https://api.postcodes.io/postcodes/${searchTerm}`)
         .catch((error) => {
-          if(error.response && error.response.status === 404) {
+          if (error.response && error.response.status === 404) {
             console.clear()
           }
         })
