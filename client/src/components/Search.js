@@ -40,7 +40,7 @@ const Search = ({ origin, setOrigin, destination, setDestination, setJourneyOpti
     }
     // Search by postcode and add to search results
     const postcodeSearch = async () => {
-      const { data } = await axios.get(`http://api.postcodes.io/postcodes/${searchTerm}`)
+      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${searchTerm}`)
       const pcText = data.result.postcode
       const pcCenter = [data.result.longitude, data.result.latitude]
       const pcAddress = data.result.parliamentary_constituency
