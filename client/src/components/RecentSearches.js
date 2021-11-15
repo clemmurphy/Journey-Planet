@@ -15,7 +15,6 @@ const RecentSearches = ({ setOrigin, setDestination, recentSearches, setRecentSe
         const reverseChronSearches = data.reverse().slice(0,4)
         setRecentSearches(reverseChronSearches)
       } catch (err) {
-        console.log(err.request.responseText)
       }
     }
     if (localStorage.token) {
